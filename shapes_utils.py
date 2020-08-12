@@ -5,16 +5,9 @@ import PIL
 import math
 import scipy.special
 import matplotlib
-import numpy             as np
+import numpy as np
 import matplotlib.pyplot as plt
-
-# Imports with probable installation required
-try:
-    import pygmsh, meshio
-except ImportError:
-    print('*** Missing required packages, I will install them for you ***')
-    os.system('pip3 install pygmsh meshio')
-    import pygmsh, meshio
+import pygmsh, meshio
 
 # Custom imports
 from meshes_utils import *
@@ -198,7 +191,7 @@ class Shape:
         plt.gca().set_aspect('equal', adjustable='box')
         plt.fill([xmin,xmax,xmax,xmin],
                  [ymin,ymin,ymax,ymax],
-                 color=(0.784,0.773,0.741),
+                 color=(1.0,1.0,1.0),
                  linewidth=2.5,
                  zorder=0)
         plt.fill(self.curve_pts[:,0],
@@ -343,11 +336,11 @@ class Shape:
             return False, 0
 
         # Compute data from mesh
-        n_tri = len(mesh.cells['triangle'])
+        n_tri = len(mesh.cells_dict['triangle'])
 
         # Remove vertex keywork from cells dictionnary
         # to avoid warning message from meshio
-        del mesh.cells['vertex']
+        del mesh.cells_dict['vertex']
 
         # Remove lines if output format is xml
         if (mesh_format == 'xml'): del mesh.cells['line']

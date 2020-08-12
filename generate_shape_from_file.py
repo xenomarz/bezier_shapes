@@ -1,14 +1,7 @@
 # Generic imports
 import os
 import sys
-
-# Imports with probable installation required
-try:
-    import pygmsh, meshio
-except ImportError:
-    print('*** Missing required packages, I will install them for you ***')
-    os.system('pip3 install pygmsh meshio')
-    import pygmsh, meshio
+import pygmsh, meshio
 
 # Custom imports
 from shapes_utils import *

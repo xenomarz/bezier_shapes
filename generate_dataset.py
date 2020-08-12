@@ -2,26 +2,19 @@
 import os
 import random
 import shutil
-from   datetime import datetime
-
-# Imports with probable installation required
-try:
-    import progress.bar
-except ImportError:
-    print('*** Missing required packages, I will install them for you ***')
-    os.system('pip3 install progress')
-    import progress.bar
+from datetime import datetime
+import progress.bar
 
 # Custom imports
-from python_tools.shapes.shapes_utils import *
-from python_tools.meshes.meshes_utils import *
+from shapes_utils import *
+from meshes_utils import *
 
 ### ************************************************
 ### Generate full dataset
 # Parameters
-n_sampling_pts = 5
+n_sampling_pts = 30
 mesh_domain    = False
-plot_pts       = True
+plot_pts       = False
 n_shapes       = 200
 time           = datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
 dataset_dir    = 'dataset_'+time+'/'
@@ -48,13 +41,13 @@ for i in range(0,n_shapes):
     generated = False
     while (not generated):
 
-        n_pts  = random.randint(3, 7)
-        radius = np.random.uniform(0.0, 1.0, size=n_pts)
-        edgy   = np.random.uniform(0.0, 1.0, size=n_pts)
+        n_pts  = random.randint(10, 20)
+        radius = np.random.uniform(0.9, 0.9, size=n_pts)
+        edgy   = np.random.uniform(1.0, 1.0, size=n_pts)
         shape  = Shape(filename+'_'+str(i),
                        None,n_pts,n_sampling_pts,radius,edgy)
 
-        shape.generate(magnify=2.0,
+        shape.generate(magnify=3.5,
                        xmin=xmin,
                        xmax=xmax,
                        ymin=ymin,

@@ -12,3 +12,9 @@ pts_va
 rad_te
 rad_tr
 rad_va
+dataset*/
+venv/
+.idea/
+build/
+*egg-info/
+dist/
